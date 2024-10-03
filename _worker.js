@@ -3392,7 +3392,7 @@ function buildXrayVLESSOutbound (tag, address, port, uuid, host, proxyIP) {
             },
             tlsSettings: {
                 allowInsecure: false,
-                fingerprint: "randomized",
+                fingerprint: "firefox",
                 alpn: ["h2", "http/1.1"],
                 serverName: randomUpperCase(host)
             },
@@ -3434,7 +3434,7 @@ function buildXrayTrojanOutbound (tag, address, port, password, host, proxyIP) {
                     "h2",
                     "http/1.1"
                 ],
-                fingerprint: "randomized",
+                fingerprint: "firefox",
                 serverName: randomUpperCase(host)
             },
             wsSettings: {
@@ -4465,7 +4465,7 @@ function buildSingboxVLESSOutbound (remark, address, port, uuid, host, sni, path
             server_name: sni,
             utls: {
                 enabled: true,
-                fingerprint: "randomized"
+                fingerprint: "firefox"
             }
         },
         transport: {
@@ -4504,7 +4504,7 @@ function buildSingboxTrojanOutbound (remark, address, port, password, host, sni,
             server_name: sni,
             utls: {
                 enabled: true,
-                fingerprint: "randomized"
+                fingerprint: "firefox"
             }
         },
         transport: {
@@ -4857,7 +4857,7 @@ async function getNormalConfigs(env, hostName, client) {
             const vlessRemark = encodeURIComponent(generateRemark(proxyIndex, port, addr, cleanIPs, 'VLESS', configType));
             const trojanRemark = encodeURIComponent(generateRemark(proxyIndex + totalAddresses.length * ports.length, port, addr, cleanIPs, 'Trojan', configType));
             const tlsFields = defaultHttpsPorts.includes(port) 
-                ? `&security=tls&sni=${sni}&fp=randomized&alpn=${alpn}`
+                ? `&security=tls&sni=${sni}&fp=firefox&alpn=${alpn}`
                 : '&security=none';
 
             if (vlessConfigs) {
